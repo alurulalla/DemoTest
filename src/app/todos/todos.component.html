@@ -1,0 +1,40 @@
+<!--<div class="row">
+  <div class="col-md-12  col-md-offset-4">
+    <form class="form-inline ">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter task" #taskName 
+        [(ngModel)]="taskEdit" name="task1" value="{{taskEditText}}"
+        >
+      </div>
+      <div class="form-group">
+        <button class="btn btn-danger" (click)="onHigh(taskName)">High</button>
+        <button class="btn btn-warning" (click)="onMedium(taskName)">Medium</button>
+        <button class="btn btn-primary" (click)="onLow(taskName)">Low</button>
+      </div>
+    </form>
+  </div>
+</div>-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div>
+      <input type="text" class="form-control" 
+      placeholder="Enter task" #taskName [(ngModel)]="taskEdit" 
+      name="task" value="{{taskEditText}}"
+      style="font-size: 25px">
+    </div>
+    <div class="col-md-offset-4">
+      <button class="btn btn-xs btn-danger" (click)="onHigh(taskName)"
+      onclick="Materialize.toast('High Task Added', 2000,'rounded')">
+      High
+      </button>
+      <button class="btn btn-warning" (click)="onMedium(taskName)"
+      onclick="Materialize.toast('Medium Task Added', 2000,'rounded')"
+      >Medium</button>
+      <button class="btn btn-primary" (click)="onLow(taskName)"
+      onclick="Materialize.toast('Low Task Added', 2000,'rounded')"
+      >Low</button>
+    </div>
+
+  </div>
+</div>

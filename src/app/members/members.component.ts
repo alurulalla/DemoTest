@@ -1,21 +1,38 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { Router } from '@angular/router';
+import { moveIn, fallIn, moveInLeft } from '../router.animations';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'app works!';
+export class MembersComponent implements OnInit {
 
-  highTask  = [];
+  name: any;
+  state: string = '';
+
+   highTask  = [];
   mediumTask = [];
   lowTask = [];
   task='';
 
-  
+  constructor(public af: AngularFire,private router: Router) {
 
-  ngOnInit(){
+    this.af.auth.subscribe(auth => {
+      if(auth) {
+        this.name = auth;
+      }
+    });
+
+  }
+
+  logout() {
+     this.af.auth.logout();
+     //console.log('logged out');
+     this.router.navigateByUrl('/login');
   }
 
   onHighTasks(taskData:{taskName:string}){
@@ -38,4 +55,9 @@ export class AppComponent implements OnInit {
     //alert(taskEdit.taskedit);
     this.task = taskEdit.taskedit;
   }
+
+
+  ngOnInit() {
+  }
+
 }
